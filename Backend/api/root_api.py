@@ -9,18 +9,18 @@ router = APIRouter()
 
 
 @router.post("/materials/", response_model=Material)
-def create_material(material: MaterialCreate, db: Session = Depends(get_db)):
+def create_material_endpoint(material: MaterialCreate, db: Session = Depends(get_db)):
     return create_material(db=db, material=material)
 
 
 @router.get("/materials/", response_model=list[Material])
-def read_materials(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_materials_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     materials = get_materials(db, skip=skip, limit=limit)
     return materials
 
 
 @router.get("/materials/{material_id}", response_model=Material)
-def read_material(material_id: int, db: Session = Depends(get_db)):
+def read_material_endpoint(material_id: int, db: Session = Depends(get_db)):
     db_material = get_material(db, material_id=material_id)
     if db_material is None:
         raise HTTPException(status_code=404, detail="Material not found")
@@ -28,7 +28,7 @@ def read_material(material_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/materials/{material_id}", response_model=Material)
-def update_material(material_id: int, material: MaterialUpdate, db: Session = Depends(get_db)):
+def update_material_endpoint(material_id: int, material: MaterialUpdate, db: Session = Depends(get_db)):
     db_material = update_material(db, material_id=material_id, material=material)
     if db_material is None:
         raise HTTPException(status_code=404, detail="Material not found")
@@ -36,7 +36,7 @@ def update_material(material_id: int, material: MaterialUpdate, db: Session = De
 
 
 @router.delete("/materials/{material_id}")
-def delete_material(material_id: int, db: Session = Depends(get_db)):
+def delete_material_endpoint(material_id: int, db: Session = Depends(get_db)):
     db_material = delete_material(db, material_id=material_id)
     if db_material is None:
         raise HTTPException(status_code=404, detail="Material not found")
@@ -44,7 +44,7 @@ def delete_material(material_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/tags/", response_model=Tag)
-def create_tag(tag: TagCreate, db: Session = Depends(get_db)):
+def create_tag_endpoint(tag: TagCreate, db: Session = Depends(get_db)):
     db_tag = get_tag_by_name(db, name=tag.name)
     if db_tag:
         raise HTTPException(status_code=400, detail="Tag already exists")
@@ -52,6 +52,6 @@ def create_tag(tag: TagCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/tags/", response_model=list[Tag])
-def read_tags(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_tags_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     tags = get_tags(db, skip=skip, limit=limit)
     return tags
