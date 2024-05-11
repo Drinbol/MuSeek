@@ -1,35 +1,95 @@
-<script setup lang="ts">
-import { ref, computed, defineComponent } from 'vue';
-import MaterialDetail from './components/MaterialDetail.vue';
-import MaterialEdit from './components/MaterialEdit.vue';
-
-type TabComponent = ReturnType<typeof defineComponent>;
-
-const tabs: Record<string, TabComponent> = {
-  Tab1: MaterialDetail,
-  Tab2: MaterialEdit,
-  Tab3: { template: '<div>Content of Tab 3</div>' } as TabComponent
-};
-
-const currentTab = ref('Tab1');
-const currentComponent = computed(() => tabs[currentTab.value]);
-
-import type { TabsProps } from 'ant-design-vue/es/tabs';
-const tabPosition = ref<TabsProps['tabPosition']>('left');
-</script>
-
 <template>
   <a-style-provider hash-priority="high">
-    <a-tabs v-model:activeKey="currentTab" :tab-position="tabPosition" animated class="tabs">
-      <a-tab-pane key="Tab1" tab="Tab 1">
-        <component :is="currentComponent" />
-      </a-tab-pane>
-      <a-tab-pane key="Tab2" tab="Tab 2">
-        <component :is="currentComponent" />
-      </a-tab-pane>
-      <a-tab-pane key="Tab3" tab="Tab 3">
-        <component :is="currentComponent" />
-      </a-tab-pane>
-    </a-tabs>
+    <a-layout>
+      <a-layout-sider
+        v-if="!isMobile"
+        :style="{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0,
+        }"
+        width="150"
+      >
+        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+          <a-menu-item key="1">
+          <router-link to="/">
+            <user-outlined />
+            <span class="nav-text">素材</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <router-link to="/MaterialAdd">
+            <video-camera-outlined />
+            <span class="nav-text">添加</span>
+          </router-link>
+        </a-menu-item>
+        </a-menu>
+      </a-layout-sider>
+
+      <a-layout :style="{ marginLeft: isMobile ? '0' : '150px' }">
+        <a-layout-header 
+        v-if="isMobile"
+        >
+          <a-menu
+              v-model:selectedKeys="selectedKeys"
+              theme="dark"
+              mode="horizontal"
+              :style="{ lineHeight: '64px' }"
+          >
+          <a-menu-item key="1">
+            <router-link to="/">
+              <user-outlined />
+              <span class="nav-text">素材</span>
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="2">
+            <router-link to="/MaterialAdd">
+              <video-camera-outlined />
+              <span class="nav-text">添加</span>
+            </router-link>
+          </a-menu-item>
+          </a-menu>
+        </a-layout-header>
+
+        <a-layout-content :style="{ overflow: 'hiden', background: '#FFF'}">
+          <router-view></router-view>
+        </a-layout-content>
+      </a-layout>
+    </a-layout>
   </a-style-provider>
 </template>
+
+
+<script lang="ts" setup>
+import { ref, onMounted, onUnmounted } from 'vue';
+const selectedKeys = ref<string[]>(['1']);
+const isMobile = ref<boolean>(false);
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth < 768;
+};
+
+onMounted(() => {
+  handleResize();
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
+</script>
+
+<style scoped> /* scoped表示该样式只在当前组件生效 */
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+[data-theme='dark'] .site-layout .site-layout-background {
+  background: #ffffff33;
+}
+
+</style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>素材列表</h1>
     <a-table :columns="columns" :dataSource="materials" rowKey="id" />
   </div>
 </template>

@@ -1,14 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import HomeView from '../views/HomeView.vue'
 import MaterialDetail from '../views/MaterialDetail.vue'
-import MaterialEdit from '../views/MaterialEdit.vue'
-
+import MaterialAdd from '../views/MaterialAdd.vue'
+import MaterialEdit from '../components/MaterialEdit.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'HomeView',
+    component: HomeView
+  },
+  {
+    path: '/MaterialAdd',
+    name: 'MaterialAdd',
+    component: MaterialAdd
   },
   {
     path: '/materials/:id',

@@ -11,6 +11,12 @@ dependencies:
   axios:
     specifier: ^1.6.8
     version: 1.6.8
+  clipboard-polyfill:
+    specifier: ^4.1.0
+    version: 4.1.0
+  install:
+    specifier: ^0.13.0
+    version: 0.13.0
   unplugin-vue-components:
     specifier: ^0.27.0
     version: 0.27.0(vue@3.4.27)
@@ -1457,6 +1463,10 @@ packages:
       fsevents: 2.3.3
     dev: false
 
+  /clipboard-polyfill@4.1.0:
+    resolution: {integrity: sha512-ksMESxI9ermQxE3hOC4DGwfjmrAxuHVtwQoJMsy06ylpaY4ybISb6y21yJ17xg9EO9ZVWvzSLIkJRlO93E8Gng==}
+    dev: false
+
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
     dependencies:
@@ -1988,6 +1998,11 @@ packages:
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
+
+  /install@0.13.0:
+    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
+    engines: {node: '>= 0.10'}
+    dev: false
 
   /is-binary-path@2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}

@@ -1,5 +1,5 @@
 <template>
-    <div class="tab">
+    <div>
       Home component
     </div>
 </template>

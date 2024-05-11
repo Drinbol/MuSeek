@@ -15,6 +15,8 @@
   "dependencies": {
     "ant-design-vue": "4.x",
     "axios": "^1.6.8",
+    "clipboard-polyfill": "^4.1.0",
+    "install": "^0.13.0",
     "unplugin-vue-components": "^0.27.0",
     "vue": "^3.4.21",
     "vue-request": "^2.0.4",

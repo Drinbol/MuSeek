@@ -1,9 +1,9 @@
 import axios from 'axios';
-import type { Material, Tag } from '@/types';
+import type { Material, Tag } from '../types';
 
 // 创建一个 axios 实例
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:8000', // 将此处替换为你的后端服务器的实际地址
+  baseURL: 'http://192.168.0.101:8000', // 将此处替换为你的后端服务器的实际地址
 });
 
 export async function listMaterials() {
